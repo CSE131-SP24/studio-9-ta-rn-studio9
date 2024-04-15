@@ -3,7 +3,7 @@ package studio9;
 import java.util.LinkedList;
 
 public class Polynomial {
-	
+
 	private LinkedList<Double> list;
 
 	/**
@@ -11,9 +11,10 @@ public class Polynomial {
 	 */
 	public Polynomial() {
 		//FIXME
+		this.list = new LinkedList<>();
 	}
 
-	
+
 	/**
 	 * 
 	 * @param coeff
@@ -21,31 +22,65 @@ public class Polynomial {
 	 */
 	public void addTerm(double coeff) {
 		//FIXME
+		list.add(coeff);
 	}
-	
+
 	/*
 	 * Returns a String of the polynomial with the proper form:
 	 * 
 	 * Cx^N + Cx^N-1 + ... + Cx + C
 	 */
 	public String toString() {
-		return ""; //FIXME
+		//FIXME
+		String x = "";
+		int i = list.size() - 1;
+		for (double val : list) {
+			x += val + "x^" + i;
+			if(i != 0) {
+				x += " + ";
+			} 
+			i--; 
+		}
+		return x;
 	}
-	
+
 	/**
 	 * 
 	 * @param x
 	 * @return value of polynomial at that x
 	 */
 	public double evaluate(double x) {
-		return 0;//FIXME
+		//FIXME
+		double value = 0.0;
+		int n = list.size() - 1;
+		for(double coeff : list) {
+			value += coeff * Math.pow(x, n);
+			n--;
+		}
+		return value;
 	}
 
-	
+
 	public Polynomial derivative() {
-		return null;//FIXME
-	}
-	
+		//FIXME
+		Polynomial newPoly = new Polynomial();
+//		double n = list.size() - 1;
+		for(int i = 0; i < list.size()-1; i++) {
+			System.out.println(list.get(i));
+			newPoly.addTerm(i * list.get(i));
+//			n--;
+		}
+		return newPoly; 
+//		Polynomial result = new Polynomial();
+//		for(int i = 1; i < list.size(); i++){
+//			double newCoeff = list.get(i)*i;
+//			result.addTerm(newCoeff);
+//		}
+//
+//		return result;
+	} 
+
+
 
 	/**
 	 * This is the "equals" method that is called by
